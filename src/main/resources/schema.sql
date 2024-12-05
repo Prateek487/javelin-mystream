@@ -29,8 +29,8 @@ create table video(
 	thumbnail text,
 	url text NOT NULL,
 	uploaded_by text,
-    content_id bigint,
-    FOREIGN KEY (content_id) REFERENCES content(id)
+	content_id bigint,
+	FOREIGN KEY (content_id) REFERENCES content(id)
 );
 
 create table watchlist(
