@@ -27,7 +27,7 @@ create table video(
 	description text,
 	upload_date datetime,
 	thumbnail text,
-    url text NOT NULL,
+	url text NOT NULL,
 	uploaded_by text,
     content_id bigint,
     FOREIGN KEY (content_id) REFERENCES content(id)
