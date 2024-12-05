@@ -17,7 +17,8 @@ create table content(
 	number_of_episodes int,
 	release_date datetime,
 	image text,
-	owner text
+	detail_id bigint,
+	FOREIGN KEY (detail_id) REFERENCES detail(id)
 );
 
 create table video(
@@ -42,4 +43,20 @@ create table watchlist(
     FOREIGN KEY (content_id) REFERENCES content(id),
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (video_id) REFERENCES video(id)
+);
+
+create table detail(
+    id bigint PRIMARY KEY,
+    content_id bigint NOT NULL,
+    directed_by varchar(255),
+    produced_by varchar(255),
+    rating int,
+    FOREIGN KEY (content_id) REFERENCES content(id)
+);
+
+create table genre(
+    id bigint PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    content_id bigint NOT NULL,
+    FOREIGN KEY (content_id) REFERENCES content(id)
 );
