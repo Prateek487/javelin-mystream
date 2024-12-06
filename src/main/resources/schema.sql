@@ -6,7 +6,15 @@ create table user(
 	password varchar(255) NOT NULL,
 	name varchar(255) NOT NULL,
 	email varchar(255) UNIQUE,
-	phone varchar(20) UNIQUE,
+	phone varchar(20) UNIQUE
+);
+
+create table detail(
+    id bigint PRIMARY KEY,
+    content_id bigint NOT NULL,
+    directed_by varchar(255),
+    produced_by varchar(255),
+    rating int
 );
 
 create table content(
@@ -43,15 +51,6 @@ create table watchlist(
     FOREIGN KEY (content_id) REFERENCES content(id),
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (video_id) REFERENCES video(id)
-);
-
-create table detail(
-    id bigint PRIMARY KEY,
-    content_id bigint NOT NULL,
-    directed_by varchar(255),
-    produced_by varchar(255),
-    rating int,
-    FOREIGN KEY (content_id) REFERENCES content(id)
 );
 
 create table genre(
