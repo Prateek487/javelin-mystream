@@ -1,9 +1,10 @@
 package com.javelin.mystream.repositories;
 
-import com.javelin.mystream.models.Content;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.javelin.mystream.models.Video;
+
 @Repository
-public interface ContentRepository extends JpaRepository<Content, Long> {
+public interface VideoRepository extends JpaRepository<Video, Long> {
 }

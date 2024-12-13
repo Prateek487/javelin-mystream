@@ -1,15 +1,43 @@
 package com.javelin.mystream.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.Date;
+import java.util.Set;
 
 @Entity(name = "content")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Content {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "id")
+    private Long id;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "release_date")
+    private Date releaseDate;
+
+    @Column(name = "image")
+    private String image;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @MapsId
+    @JoinColumn(name = "detail_id", referencedColumnName = "id")
+    private Detail detail;
+
+    @OneToMany(mappedBy = "content")
+    private Set<Video> videos;
 }
