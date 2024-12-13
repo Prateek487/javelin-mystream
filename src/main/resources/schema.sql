@@ -2,7 +2,7 @@ create database mystream;
 use mystream;
 
 create table user(
-	id bigint PRIMARY KEY,
+	id bigint PRIMARY KEY AUTO_INCREMENT,
 	password varchar(255) NOT NULL,
 	name varchar(255) NOT NULL,
 	email varchar(255) UNIQUE,
@@ -10,39 +10,37 @@ create table user(
 );
 
 create table detail(
-    id bigint PRIMARY KEY,
-    content_id bigint NOT NULL,
+    id bigint PRIMARY KEY AUTO_INCREMENT,
     directed_by varchar(255),
     produced_by varchar(255),
     rating int
 );
 
 create table content(
-	id bigint PRIMARY KEY,
+	id bigint PRIMARY KEY AUTO_INCREMENT,
 	name varchar(255) NOT NULL,
 	description text,
 	type varchar(20) NOT NULL,
-	number_of_episodes int,
-	release_date datetime,
-	image text,
+	release_date datetime NOT NULL,
+	image text NOT NULL,
 	detail_id bigint,
 	FOREIGN KEY (detail_id) REFERENCES detail(id)
 );
 
 create table video(
-	id bigint PRIMARY KEY,
+	id bigint PRIMARY KEY AUTO_INCREMENT,
 	name varchar(255) NOT NULL,
 	description text,
 	upload_date datetime,
 	thumbnail text,
 	url text NOT NULL,
 	uploaded_by text,
-	content_id bigint,
+	content_id bigint NOT NULL,
 	FOREIGN KEY (content_id) REFERENCES content(id)
 );
 
 create table watchlist(
-    id bigint PRIMARY KEY,
+    id bigint PRIMARY KEY AUTO_INCREMENT,
     content_id bigint NOT NULL,
     user_id bigint NOT NULL,
     video_id bigint NOT NULL,
@@ -54,7 +52,7 @@ create table watchlist(
 );
 
 create table genre(
-    id bigint PRIMARY KEY,
+    id bigint PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
     content_id bigint NOT NULL,
     FOREIGN KEY (content_id) REFERENCES content(id)
