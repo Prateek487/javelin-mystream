@@ -1,5 +1,6 @@
 package com.javelin.mystream.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
@@ -40,4 +41,9 @@ public class Content {
 
     @OneToMany(mappedBy = "content")
     private Set<Video> videos;
+
+    @ManyToMany
+    @JoinTable(name = "content_genre", joinColumns = @JoinColumn(name = "content_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    @JsonManagedReference
+    private Set<Genre> genres;
 }
