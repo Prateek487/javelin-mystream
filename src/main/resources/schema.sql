@@ -39,6 +39,19 @@ create table video(
 	FOREIGN KEY (content_id) REFERENCES content(id)
 );
 
+create table genre(
+    id bigint PRIMARY KEY AUTO_INCREMENT,
+    name varchar(255) NOT NULL UNIQUE
+);
+
+create table content_genre(
+    id bigint PRIMARY KEY AUTO_INCREMENT,
+    content_id bigint NOT NULL,
+    genre_id bigint NOT NULL,
+    FOREIGN KEY (content_id) REFERENCES content(id),
+    FOREIGN KEY (genre_id) REFERENCES genre(id)
+);
+
 create table watchlist(
     id bigint PRIMARY KEY AUTO_INCREMENT,
     content_id bigint NOT NULL,
@@ -49,11 +62,4 @@ create table watchlist(
     FOREIGN KEY (content_id) REFERENCES content(id),
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (video_id) REFERENCES video(id)
-);
-
-create table genre(
-    id bigint PRIMARY KEY AUTO_INCREMENT,
-    name varchar(255) NOT NULL,
-    content_id bigint NOT NULL,
-    FOREIGN KEY (content_id) REFERENCES content(id)
 );
